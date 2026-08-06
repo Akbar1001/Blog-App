@@ -58,3 +58,41 @@ def skills():
         "MySQL"
     ]
 }
+
+# blog with an ID
+@app.get("/blogs/{blog_id}")
+def get_blog_by_id(blog_id:int):
+    return {
+        "blog_id" :blog_id  
+    }
+#user with an id
+@app.get("/users/{user_id}")
+def get_user_by_id(user_id:int):
+    return{
+        "user_id":user_id
+    }
+
+
+# #Filtering on the basis of name
+# @app.get("/blogs")
+# def get_blogs(author :str):
+#     return{
+#         "author": author
+#     }
+
+# #pagination 
+# @app.get("/blogs")
+# def get_blogs(page:int=1, limit:int=10):
+#     return{
+#         "page": page,
+#         "limit": limit
+#     }
+
+#we can have both pagination and filtering at the same time
+@app.get("/blogs")
+def get_blogs(page: int=1 , limit : int=10, author: str | None=None):
+    return{
+        "page": page,
+        "limit": limit,
+        "author": author
+    }
